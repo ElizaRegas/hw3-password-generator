@@ -36,16 +36,25 @@ function generatePassword() {
       console.log("try again");
     }
 
-  // WHEN prompted for password criteria
-  // THEN I select which criteria to include in the password
+    var finalPasswordLength = acceptedPasswordLength.pop();
 
-  var capitalLetters = prompt("Do you want to include capital letters?");
-  var lowerCaseLetters = prompt ("Do you want to include lower case letters?");
-  
+    if (finalPasswordLength < 129 && finalPasswordLength > 7) {
+      console.log("running gatherInfo");
+      gatherInfo();
+    }
+    function gatherInfo() {
+      // WHEN prompted for password criteria
+      // THEN I select which criteria to include in the password
+
+      // prompt information
+      var capitalLetters = prompt("Do you want to include capital letters?");
+      var lowerCaseLetters = prompt ("Do you want to include lower case letters?");
+      var numbers = prompt ("Do you want to include numbers?");
+      var specialCharacters = prompt ("Do you want to include special characters?");
+    
+      }
+
 }
-
-
-
 
 
 
