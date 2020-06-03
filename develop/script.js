@@ -1,31 +1,53 @@
 // variables
 var generateBtn = document.querySelector("#generate");
+var acceptedPasswordLength = [];
 
 // Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+// function writePassword() {
+//   var password = generatePassword();
+//   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+//   passwordText.value = password;
 
-}
+// }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", generatePassword);
 
-// WHEN I click the button to generate a password
-// THEN I am presented with a series of prompts for password criteria
-var requestedPasswordLength = prompt("How long would you like your password to be?")
-var passwordLength = parseInt(requestedPasswordLength);
-console.log(passwordLength);
+function generatePassword() {
+  // WHEN I click the button to generate a password
+  // THEN I am presented with a series of prompts for password criteria
+  var requestedPasswordLength = prompt(
+    "How many characters would you like your password to be?"
+  );
+  // making sure the input value is a number
+  var numberCheck = isNaN(requestedPasswordLength);
+    if (numberCheck === false) {
+      acceptedPasswordLength.push(requestedPasswordLength);
+      console.log(acceptedPasswordLength);
+    } else {
+      alert("Not a valid input. Please try again.");      
+      console.log("nope");
+    }
+  // WHEN prompted for the length of the password
+  // THEN I choose a length of at least 8 characters and no more than 128 characters
+    if (requestedPasswordLength > 129 || requestedPasswordLength < 8) {
+      alert("Passwords must be between 8 and 128 characters. Please try again");
+      console.log("try again");
+    }
+
+  // WHEN prompted for password criteria
+  // THEN I select which criteria to include in the password
+
+  var capitalLetters = prompt("Do you want to include capital letters?");
+  var lowerCaseLetters = prompt ("Do you want to include lower case letters?");
+  
+}
 
 
 
-// WHEN prompted for password criteria
-// THEN I select which criteria to include in the password
 
-// WHEN prompted for the length of the password
-// THEN I choose a length of at least 8 characters and no more than 128 characters
+
 
 // WHEN prompted for character types to include in the password
 // THEN I choose lowercase, uppercase, numeric, and/or special characters
