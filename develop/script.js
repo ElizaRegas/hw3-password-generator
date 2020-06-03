@@ -22,44 +22,59 @@ function generatePassword() {
   );
   // making sure the input value is a number
   var numberCheck = isNaN(requestedPasswordLength);
-    if (numberCheck === false) {
-      acceptedPasswordLength.push(requestedPasswordLength);
-      console.log(acceptedPasswordLength);
-    } else {
-      alert("Not a valid input. Please try again.");      
-      console.log("nope");
-    }
+  if (numberCheck === false) {
+    acceptedPasswordLength.push(requestedPasswordLength);
+    console.log(acceptedPasswordLength);
+  } else {
+    alert("Not a valid input. Please try again.");
+    console.log("nope");
+  }
   // WHEN prompted for the length of the password
   // THEN I choose a length of at least 8 characters and no more than 128 characters
-    if (requestedPasswordLength > 129 || requestedPasswordLength < 8) {
-      alert("Passwords must be between 8 and 128 characters. Please try again");
-      console.log("try again");
+  if (requestedPasswordLength > 129 || requestedPasswordLength < 8) {
+    alert("Passwords must be between 8 and 128 characters. Please try again");
+    console.log("try again");
+  }
+
+  var finalPasswordLength = acceptedPasswordLength.pop();
+
+  if (finalPasswordLength < 129 && finalPasswordLength > 7) {
+    console.log("running gatherInfo");
+    gatherInfo();
+  }
+  function gatherInfo() {
+    // WHEN prompted for password criteria
+    // THEN I select which criteria to include in the password
+    // WHEN prompted for character types to include in the password
+    // THEN I choose lowercase, uppercase, numeric, and/or special characters
+
+    // prompt information
+    var capitalLetters = confirm("Do you want to include capital letters?");
+
+    if (capitalLetters) {
+      alert("Capital letters will be included!");
+    } else {
+      alert("No capital letters for you!");
     }
 
-    var finalPasswordLength = acceptedPasswordLength.pop();
+    var lowerCaseLetters = confirm("Do you want to include lower case letters?");
 
-    if (finalPasswordLength < 129 && finalPasswordLength > 7) {
-      console.log("running gatherInfo");
-      gatherInfo();
+    if (lowerCaseLetters) {
     }
-    function gatherInfo() {
-      // WHEN prompted for password criteria
-      // THEN I select which criteria to include in the password
 
-      // prompt information
-      var capitalLetters = prompt("Do you want to include capital letters?");
-      var lowerCaseLetters = prompt ("Do you want to include lower case letters?");
-      var numbers = prompt ("Do you want to include numbers?");
-      var specialCharacters = prompt ("Do you want to include special characters?");
-    
-      }
+    var numbers = confirm("Do you want to include numbers?");
 
+    if (numbers) {
+    }
+
+    var specialCharacters = confirm(
+      "Do you want to include special characters?"
+    );
+
+    if (specialCharacters) {
+    }
+  }
 }
-
-
-
-// WHEN prompted for character types to include in the password
-// THEN I choose lowercase, uppercase, numeric, and/or special characters
 
 // WHEN I answer each prompt
 // THEN my input should be validated and at least one character type should be selected
