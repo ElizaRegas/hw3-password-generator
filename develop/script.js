@@ -96,6 +96,8 @@ function randomCharacters() {
     var randomValue = concatArray[randomIndex];
     semiFinalPassword.push(randomValue);
   }
+  console.log(semiFinalPassword);
+  arrayValidation();
 }
 
 // MDN formula for getting a random integer between 2 values
@@ -106,6 +108,22 @@ function getRandomInt(min, max) {
 }
 
 // check password to make sure all arrays are represented
+function arrayValidation() {
+  // check to see if the 4 arrays are empty
+  var isLengthGreaterThanZero = selectedCapitalLetters.length > 0;
+    // if not empty, check to make sure semiFinalPassword contains at least 1 value
+    if (isLengthGreaterThanZero) {
+      for (i = 0; i <selectedCapitalLetters.length; i++) {
+        var capitalLetter = selectedCapitalLetters[i];
+        var isStatementTrue = semiFinalPassword.includes(capitalLetter);
+        if (isStatementTrue) {
+          console.log("passed");
+          break;
+        }
+      }
+    }
+      // if it doesn't contain a value, generate a new semiFinalPassword
+}
 
 // WHEN I answer each prompt
 // THEN my input should be validated and at least one character type should be selected
