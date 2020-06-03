@@ -65,7 +65,7 @@ function generatePassword() {
     if (numbers) {
       alert("You can count on it!");
       var numberArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-      selectedNumbers.push(numberArray)
+      selectedNumbers.push(numberArray);
       console.log(selectedNumbers);
     } else {
       alert("All of the cool kids are doing it, but whatever...");
@@ -74,7 +74,11 @@ function generatePassword() {
     var specialCharacters = confirm("Do you want to include special characters?");
     if (specialCharacters) {
       alert("You're special, just like your characters!");
-      var specialCharacterArray = []
+      var specialCharacterArray =  ["!", "#", "$", "%", "&", "'", "(", ")", "*", 
+      "+", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "\", ^", "_", "`", 
+      "{", "|", "}", "~"];
+      selectedSpecialCharacters.push(specialCharacterArray);
+      console.log(specialCharacterArray);
     } else {
       alert("Boooooorrrriiiiinnnnnggg!");
     }
