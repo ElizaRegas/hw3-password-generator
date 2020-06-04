@@ -22,17 +22,19 @@ function generatePassword() {
   // if the user input is NOT NOT a number, then accept the user input
   if (numberCheck === false) {
     acceptedPasswordLength = requestedPasswordLength;
+    lengthCheck();
   } else {
-    alert("Not a valid input. Please enter a number between 8 and 128.");
+    alert("Not a valid input.\nPlease stop day drinking and enter an actual number.");
     resetApplication();
   }
-
-  // check to make sure the password length is between 8 and 128
-  if (acceptedPasswordLength > 129 || acceptedPasswordLength < 8) {
-    alert("Passwords must be between 8 and 128 characters. Please try again");
-    resetApplication();
-  } else {
-    gatherInfo();
+  function lengthCheck() {
+    // check to make sure the password length is between 8 and 128     
+    if (acceptedPasswordLength > 129 || acceptedPasswordLength < 8) {
+      alert("Sorry, I should have been more specific.\nPasswords must be between 8 and 128 characters.\nPlease try again.");
+      resetApplication();
+    } else {
+      gatherInfo();
+    }
   }
 }
 
@@ -88,8 +90,13 @@ function gatherInfo() {
 function combineArrays() {
   concatArray = concatArray.concat(selectedSpecialCharacters, selectedNumbers,
     selectedLowerCaseLetters, selectedCapitalLetters)
-    // run the function to pull random characters from the possible characters and create a new holding array- semiFinalPassword
-    randomCharacters();
+    if (concatArray.length < 1) {
+      confirm("Seriously? You need to meet me half way here.\nTry again, and this time, select at least ONE character type!");
+      gatherInfo();
+    }else{
+      // run the function to pull random characters from the possible characters and create a new holding array- semiFinalPassword
+      randomCharacters();
+    }
 }
 
 // randomly choose the amount of characters from the array with selected possibilities
@@ -188,7 +195,11 @@ function resetApplication (){
   var clearPassword = "";
   writePassword(clearPassword);
   // had trouble clearing the #password in the DOM because the prompt in the generatePassword function was superceding the clearPassword. This timer function solved that issue.
-  setTimeout(generatePassword, 10);
+  setTimeout(generatePassword, 100);
+}
+
+function holdYourHorses() {
+  console.log("prompt override");
 }
 
 // Write password to the #password input
