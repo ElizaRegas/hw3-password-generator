@@ -177,28 +177,35 @@ function masterValidation() {
 }
 
 function resetApplication (){
-  var acceptedPasswordLength = "";
-  var selectedCapitalLetters = [];
-  var selectedLowerCaseLetters = [];
-  var selectedNumbers = [];
-  var selectedSpecialCharacters = [];
-  var concatArray = [];
-  var semiFinalPassword = [];
-  generatePassword();
+  acceptedPasswordLength = "";
+  selectedCapitalLetters = [];
+  selectedLowerCaseLetters = [];
+  selectedNumbers = [];
+  selectedSpecialCharacters = [];
+  concatArray = [];
+  semiFinalPassword = [];
+  finalPassword = [];
+  var clearPassword = "";
+  writePassword(clearPassword);
+  // had trouble clearing the #password in the DOM because the prompt in the generatePassword function was superceding the clearPassword. This timer function solved that issue.
+  setTimeout(generatePassword, 10);
 }
+
 // Write password to the #password input
 function writePassword(password) {
   // var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
 
 }
 
-// WHEN I click the button to generate a password
-// THEN I am presented with a series of prompts for password criteria
-// WHEN prompted for password criteria
-// THEN I select which criteria to include in the password
+// function clearPassword() {
+//   var passwordDisplay = document.getElementById("#password");
+//   passwordDisplay.removeChild();
+// }
+
+
+
 // WHEN prompted for the length of the password
 // THEN I choose a length of at least 8 characters and no more than 128 characters
 // WHEN prompted for character types to include in the password
