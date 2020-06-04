@@ -29,7 +29,7 @@ function generatePassword() {
   }
   function lengthCheck() {
     // check to make sure the password length is between 8 and 128     
-    if (acceptedPasswordLength > 129 || acceptedPasswordLength < 8) {
+    if (acceptedPasswordLength > 128 || acceptedPasswordLength < 8) {
       alert("Sorry, I should have been more specific.\nPasswords must be between 8 and 128 characters.\nPlease try again.");
       resetApplication();
     } else {
@@ -91,7 +91,7 @@ function combineArrays() {
   concatArray = concatArray.concat(selectedSpecialCharacters, selectedNumbers,
     selectedLowerCaseLetters, selectedCapitalLetters)
     if (concatArray.length < 1) {
-      confirm("Seriously? You need to meet me half way here.\nTry again, and this time, select at least ONE character type!");
+      alert("Seriously? You need to meet me half way here.\nTry again, and this time, select at least ONE of the character types!");
       gatherInfo();
     }else{
       // run the function to pull random characters from the possible characters and create a new holding array- semiFinalPassword
@@ -209,22 +209,3 @@ function writePassword(password) {
   passwordText.value = password;
 
 }
-
-// function clearPassword() {
-//   var passwordDisplay = document.getElementById("#password");
-//   passwordDisplay.removeChild();
-// }
-
-
-
-// WHEN prompted for the length of the password
-// THEN I choose a length of at least 8 characters and no more than 128 characters
-// WHEN prompted for character types to include in the password
-// THEN I choose lowercase, uppercase, numeric, and/or special characters
-// WHEN I answer each prompt
-// THEN my input should be validated and at least one character type should be selected
-// WHEN all prompts are answered
-// THEN a password is generated that matches the selected criteria
-// WHEN the password is generated
-// THEN the password is either displayed in an alert or written to the 
-// page.
