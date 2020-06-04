@@ -11,6 +11,7 @@ var semiFinalPassword = [];
 // Add event listener to begin the process of generating a password
 generateBtn.addEventListener("click", resetApplication);
 
+// gathering information to generate the password
 function generatePassword() {
   // prompt to ask the user how long their password should be
   var requestedPasswordLength = prompt(
@@ -40,6 +41,7 @@ function gatherInfo() {
   var capitalLetters = confirm("Do you want to include capital letters?");
   if (capitalLetters) {
     alert("Capital letters will be included!");
+    // update the array to include the selection
     selectedCapitalLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
   } else {
     alert("No capital letters for you!");
@@ -50,6 +52,7 @@ function gatherInfo() {
   var lowerCaseLetters = confirm("Do you want to include lower case letters?");
   if (lowerCaseLetters) {
     alert("Lower case letters coming right up!");
+    // update the array to include the selection
     selectedLowerCaseLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
   } else {
     alert("Lower case letters just aren't your thing, huh?!");
@@ -60,6 +63,7 @@ function gatherInfo() {
   var numbers = confirm("Do you want to include numbers?");
   if (numbers) {
     alert("You can count on it!");
+    // update the array to include the selection
     selectedNumbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   } else {
     alert("All of the cool kids are doing it, but whatever...");
@@ -70,11 +74,13 @@ function gatherInfo() {
   var specialCharacters = confirm("Do you want to include special characters?");
   if (specialCharacters) {
     alert("You're special, just like your characters!");
+    // update the array to include the selection
     selectedSpecialCharacters =  ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "\", ^", "_", "`", "{", "|", "}", "~"];
   } else {
     alert("Boooooorrrriiiiinnnnnggg!");
   }
   console.log(selectedSpecialCharacters);
+  // run the function to put all selected arrays into one array full of possible characters
   combineArrays();
 }
 
@@ -82,13 +88,15 @@ function gatherInfo() {
 function combineArrays() {
   concatArray = concatArray.concat(selectedSpecialCharacters, selectedNumbers,
     selectedLowerCaseLetters, selectedCapitalLetters)
+    // run the function to pull random characters from the possible characters and create a new holding array- semiFinalPassword
     randomCharacters();
 }
 
-// randomly choose the amount of characters from array
+// randomly choose the amount of characters from the array with selected possibilities
 function randomCharacters() {
   // password length met all criteria- now convert it from a string into a number
   var passwordLengthNumber = parseInt(acceptedPasswordLength)
+  // iterate through the array that many times
   for (i = 0; i < passwordLengthNumber; i++) {
     // generate a random index number for the stored password character possibilities
     var randomIndex = getRandomInt(0, concatArray.length);
@@ -97,15 +105,13 @@ function randomCharacters() {
     // push the value to our temporary holding array that still needs to be tested
     semiFinalPassword.push(randomValue);
   }
-  
+  // checking to see if the current password selection passes all required tests
   var testResults = masterValidation();
-  console.log(testResults);
   if (testResults === true) {
     var finalPassword = semiFinalPassword.join('');
     writePassword(finalPassword);
   } else {
     semiFinalPassword = [];
-    console.log(semiFinalPassword);
     randomCharacters();
   }
 }
@@ -119,25 +125,21 @@ function getRandomInt(min, max) {
 
 // check password to make sure all arrays are represented
 function arrayValidation(arrayToCheckout) {
-  // check to see if the 4 arrays are empty
   var testResult = false;
-    // if not empty, check to make sure semiFinalPassword contains at least 1 value
-    // if (isLengthGreaterThanZero) {
-      for (i = 0; i <arrayToCheckout.length; i++) {
-        var character = arrayToCheckout[i];
-        if (semiFinalPassword.includes(character)) {
-          console.log("passed");
-          testResult = true;
-          break;
-        } 
-      }
-      return testResult;
-    // }
-      // if it doesn't contain a value, generate a new semiFinalPassword
+    // check to see if at least 1 character of each type is represented
+    for (i = 0; i <arrayToCheckout.length; i++) {
+      var character = arrayToCheckout[i];
+      if (semiFinalPassword.includes(character)) {
+        console.log("passed");
+        testResult = true;
+        break;
+      } 
+    }
+    return testResult;
 }
-
+// trying to determine if an array is empty- will return a boolean
 function isLengthGreaterThanZero (arrayToCheckout) {
-  return arrayToCheckout.length > 0; // will return a boolean
+  return arrayToCheckout.length > 0;
 }
 // checking to see if the temporary password array contains at least 1 of all requested types
 function masterValidation() {
