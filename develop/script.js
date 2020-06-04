@@ -137,7 +137,6 @@ function arrayValidation(arrayToCheckout) {
   for (i = 0; i <arrayToCheckout.length; i++) {
     var character = arrayToCheckout[i];
     if (semiFinalPassword.includes(character)) {
-      console.log("passed");
       testResult = true;
       break;
     } 
@@ -190,7 +189,6 @@ function resetApplication (){
 
 // Write password to the #password div
 function writePassword(password) {
-  // var password = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 
