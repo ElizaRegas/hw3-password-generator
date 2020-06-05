@@ -5,19 +5,17 @@
 
 ## Description 
 
-This password generator is a homework assignment as part of Georgia Tech's Full Stack Development Program. The HTML and CSS was provided to me, 
-
-I built it using HTML, CSS, and Bootstrap. I then adjusted styling to match the example provided in class.
+This password generator is a homework assignment as part of Georgia Tech's Full Stack Development Program. The HTML and CSS was provided to me by Trilogy, as well as a few lines of javascript (specifically, line 2, lines 11 and 12, and lines 191 through 193). 
 
 ## Installation
 
 1. Clone the repository from GitHub.
 2. Open the index.html file in a default browser.
 
-Or, you can click here to see the 
-[deployed portfolio site](https://github.com/ElizaRegas/hw2-bootstrap-portfolio)
-
 ## Usage 
+
+To access the password generator,
+[CLICK HERE](https://github.com/ElizaRegas/hw2-bootstrap-portfolio)
 
 This site contains 3 pages: 
 
