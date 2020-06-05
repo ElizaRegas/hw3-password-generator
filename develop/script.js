@@ -191,5 +191,4 @@ function resetApplication (){
 function writePassword(password) {
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
-
 }
