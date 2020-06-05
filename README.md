@@ -5,7 +5,7 @@
 
 ## Description 
 
-This password generator is a homework assignment as part of Georgia Tech's Full Stack Development Program. The HTML and CSS was provided to me by Trilogy, as well as a few lines of javascript (specifically, line 2, lines 11 and 12, and lines 191 through 193). 
+This password generator is a homework assignment as part of Georgia Tech's Full Stack Web Development Program. The HTML and CSS were provided to me by Trilogy, as well as a few lines of javascript (specifically, line 2, lines 11 and 12, and lines 191 through 193). 
 
 ## Installation
 
@@ -15,27 +15,13 @@ This password generator is a homework assignment as part of Georgia Tech's Full 
 ## Usage 
 
 To access the password generator,
-[CLICK HERE](https://github.com/ElizaRegas/hw2-bootstrap-portfolio)
+[CLICK HERE](https://elizaregas.github.io/hw3-password-generator/)
 
-This site contains 3 pages: 
-
-About Me
-
-![About Me](./assets/images/aboutMe.png)
-
-My Portfolio
-
-![Portfolio](./assets/images/portfolio.png)
-
-Contact Me
-
-![Contact](./assets/images/contact.png)
+![Password Generator](./assets/screenshot.png)
 
 ## Credits
 
-This site is a creation of the Trilogy curriculum team, and was shared with me to modify the content and tailor it to display my portfolio. 
-
-The css was generously provided by the Twitter Bootstrap team.
+This site is a creation of the Trilogy curriculum team, and was shared with me to modify the logic and turn the website into a functional password generator.
 
 ## MIT License
 
