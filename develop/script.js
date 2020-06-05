@@ -27,17 +27,20 @@ function generatePassword() {
     alert("Not a valid input.\nPlease stop day drinking and enter an actual number.");
     resetApplication();
   }
-  function lengthCheck() {
-    // check to make sure the password length is between 8 and 128     
-    if (acceptedPasswordLength > 128 || acceptedPasswordLength < 8) {
-      alert("Sorry, I should have been more specific.\nPasswords must be between 8 and 128 characters.\nPlease try again.");
-      resetApplication();
-    } else {
-      gatherInfo();
-    }
+}
+
+// making sure the password has the appropriate amount of characters
+function lengthCheck() {
+  // check to make sure the password length is between 8 and 128     
+  if (acceptedPasswordLength > 128 || acceptedPasswordLength < 8) {
+    alert("Sorry, I should have been more specific.\nPasswords must be between 8 and 128 characters.\nPlease try again.");
+    resetApplication();
+  } else {
+    gatherInfo();
   }
 }
 
+// prompts for user to select the type of characters in password
 function gatherInfo() {
   // prompt for capital letters
   var capitalLetters = confirm("Do you want to include capital letters?");
@@ -48,7 +51,6 @@ function gatherInfo() {
   } else {
     alert("No capital letters for you!");
   }
-  console.log(selectedCapitalLetters);
 
   // prompt for lower case letters
   var lowerCaseLetters = confirm("Do you want to include lower case letters?");
@@ -59,7 +61,6 @@ function gatherInfo() {
   } else {
     alert("Lower case letters just aren't your thing, huh?!");
   }
-  console.log(selectedLowerCaseLetters);
 
   // prompt for numbers
   var numbers = confirm("Do you want to include numbers?");
@@ -70,7 +71,6 @@ function gatherInfo() {
   } else {
     alert("All of the cool kids are doing it, but whatever...");
   }
-  console.log(selectedNumbers);
 
   // prompt for special characters
   var specialCharacters = confirm("Do you want to include special characters?");
@@ -81,7 +81,6 @@ function gatherInfo() {
   } else {
     alert("Boooooorrrriiiiinnnnnggg!");
   }
-  console.log(selectedSpecialCharacters);
   // run the function to put all selected arrays into one array full of possible characters
   combineArrays();
 }
@@ -90,13 +89,13 @@ function gatherInfo() {
 function combineArrays() {
   concatArray = concatArray.concat(selectedSpecialCharacters, selectedNumbers,
     selectedLowerCaseLetters, selectedCapitalLetters)
-    if (concatArray.length < 1) {
-      alert("Seriously? You need to meet me half way here.\nTry again, and this time, select at least ONE of the character types!");
-      gatherInfo();
-    }else{
-      // run the function to pull random characters from the possible characters and create a new holding array- semiFinalPassword
-      randomCharacters();
-    }
+  if (concatArray.length === 0) {
+    alert("Seriously? You need to meet me half way here.\nTry again, and this time, select at least ONE of the character types!");
+    gatherInfo();
+  } else {
+    // run the function to pull random characters from the possible characters and create a new holding array- semiFinalPassword
+    randomCharacters();
+  }
 }
 
 // randomly choose the amount of characters from the array with selected possibilities
@@ -115,6 +114,7 @@ function randomCharacters() {
   // checking to see if the current password selection passes all required tests
   var testResults = masterValidation();
   if (testResults === true) {
+    // placing the finalized password into a new array
     var finalPassword = semiFinalPassword.join('');
     writePassword(finalPassword);
   } else {
@@ -133,56 +133,45 @@ function getRandomInt(min, max) {
 // check password to make sure all arrays are represented
 function arrayValidation(arrayToCheckout) {
   var testResult = false;
-    // check to see if at least 1 character of each type is represented
-    for (i = 0; i <arrayToCheckout.length; i++) {
-      var character = arrayToCheckout[i];
-      if (semiFinalPassword.includes(character)) {
-        console.log("passed");
-        testResult = true;
-        break;
-      } 
-    }
-    return testResult;
+  // check to see if at least 1 character of each type is represented
+  for (i = 0; i <arrayToCheckout.length; i++) {
+    var character = arrayToCheckout[i];
+    if (semiFinalPassword.includes(character)) {
+      testResult = true;
+      break;
+    } 
+  }
+  return testResult;
 }
+
 // trying to determine if an array is empty- will return a boolean
 function isLengthGreaterThanZero (arrayToCheckout) {
   return arrayToCheckout.length > 0;
 }
+
 // checking to see if the temporary password array contains at least 1 of all requested types
 function masterValidation() {
   var allTestsPassed = true;
 
-  if (isLengthGreaterThanZero(selectedCapitalLetters)) {
-    var capitalLetterTest = arrayValidation(selectedCapitalLetters);
-    console.log(capitalLetterTest);
+  allTestsPassed = longEnough(selectedCapitalLetters, allTestsPassed);
+  allTestsPassed = longEnough(selectedLowerCaseLetters, allTestsPassed);
+  allTestsPassed = longEnough(selectedNumbers, allTestsPassed);
+  allTestsPassed = longEnough(selectedSpecialCharacters, allTestsPassed);
+  return allTestsPassed;
+}
+
+// checking to see if the arrays contain anything
+function longEnough(selectedArrays, allTestsPassed) {
+  if (isLengthGreaterThanZero(selectedArrays)) {
+    var capitalLetterTest = arrayValidation(selectedArrays);
     if (capitalLetterTest === false) {
-      allTestsPassed = false;
-    }
-  }
-  if (isLengthGreaterThanZero(selectedLowerCaseLetters)) {
-    var lowerCaseLetterTest = arrayValidation(selectedLowerCaseLetters);
-    console.log(lowerCaseLetterTest);
-    if (lowerCaseLetterTest === false) {
-      allTestsPassed = false;
-    }
-  }
-  if (isLengthGreaterThanZero(selectedNumbers)) {
-    var numberTest = arrayValidation(selectedNumbers);
-    console.log(numberTest);
-    if (numberTest === false) {
-      allTestsPassed = false;
-    }
-  }
-  if (isLengthGreaterThanZero(selectedSpecialCharacters)) {
-    var specialCharacterTest = arrayValidation(selectedSpecialCharacters);
-    console.log(specialCharacterTest);
-    if (specialCharacterTest === false) {
       allTestsPassed = false;
     }
   }
   return allTestsPassed;
 }
 
+// clearing out arrays, the #password div, and starting password generation again
 function resetApplication (){
   acceptedPasswordLength = "";
   selectedCapitalLetters = [];
@@ -198,14 +187,8 @@ function resetApplication (){
   setTimeout(generatePassword, 100);
 }
 
-function holdYourHorses() {
-  console.log("prompt override");
-}
-
-// Write password to the #password input
+// Write password to the #password div
 function writePassword(password) {
-  // var password = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
-
 }
